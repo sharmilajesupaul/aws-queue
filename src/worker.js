@@ -13,7 +13,12 @@ setInterval(() => {
       console.error(err);
     } else {
       if (data.Messages) {
+        const sqsDeleteParams = {
+          QueueUrl: process.env.QUEUE_URL,
+          ReceiptHandle: data.Messages[0].ReceiptHandle
+        }
         let messageBody = '';
+
 
         try {
           messageBody = JSON.parse(data.Messages[0].Body);
@@ -22,22 +27,19 @@ setInterval(() => {
           return false;
         }
 
-        Request.findById(messageBody.id, (err, doc) => {
-          request(messageBody.url, (err, res, body) => {
-            doc.htmlBody = body;
-            doc.completed = true;
+        if (messageBody.id && messageBody.url) {
+          Request.findById(messageBody.id, (err, doc) => {
+            request(messageBody.url, (err, res, body) => {
+              doc.htmlBody = body;
+              doc.completed = true;
 
-            const sqsDeleteParams = {
-              QueueUrl: process.env.QUEUE_URL,
-              ReceiptHandle: data.Messages[0].ReceiptHandle
-            }
-
-            sqs.deleteMessage(sqsDeleteParams, function(err, data) {
-              if (err) console.error(err);
-              else doc.save();
+              sqs.deleteMessage(sqsDeleteParams, (err, data) => {
+                if (err) console.error(err);
+                else doc.save();
+              });
             });
           });
-        });
+        }
       }
     }
   });
