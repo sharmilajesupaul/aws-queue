@@ -1,0 +1,30 @@
+{
+  "name": "aws-queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "start.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sharmilajesupaul/aws-queue.git"
+  },
+  "author": "Sharmila Jesupaul",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sharmilajesupaul/aws-queue/issues"
+  },
+  "homepage": "https://github.com/sharmilajesupaul/aws-queue#readme",
+  "dependencies": {
+    "aws-sdk": "^2.2.30",
+    "babel": "^6.3.26",
+    "babel-cli": "^6.4.0",
+    "babel-core": "^6.4.0",
+    "body-parser": "^1.14.2",
+    "dotenv": "^1.2.0",
+    "express": "^4.13.3",
+    "mongoose": "^4.3.6"
+  }
+}
