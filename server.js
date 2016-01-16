@@ -4,6 +4,8 @@ import bodyParser from 'body-parser'
 import express from 'express';
 import routes from './src/controllers/request'
 
+import './src/worker'
+
 
 var app = express();
 app.use(bodyParser.json());
