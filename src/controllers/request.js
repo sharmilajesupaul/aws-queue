@@ -3,7 +3,7 @@ import AWS from '../../config/aws'
 
 export default function(app) {
   app.get('/', function(req, res) {
-    res.send('Hello World!');
+    res.send('Hello world!');
   });
 
   app.get('/requests/:id', (req, res) => {
@@ -18,21 +18,24 @@ export default function(app) {
 
   app.post('/requests', (req, res) => {
     Request(req.body).save((err, doc) => {
-    	if(err) return res.status(500).send(err.message);
+      if (err) return res.status(500).send(err.message);
 
       var sqs = new AWS.SQS();
       var params = {
-        MessageBody: req.body.url,
+        MessageBody: JSON.stringify({
+          id: doc._id,
+          url: req.body.url
+        }),
         DelaySeconds: 0,
         QueueUrl: process.env.QUEUE_URL
       };
 
       sqs.sendMessage(params, function(err, data) {
         if (err) {
-        	return res.status(500).send(err.message);
+          return res.status(500).send(err.message);
         } else {
-					return res.send(doc);
-				}
+          return res.send(doc);
+        }
       });
     });
   });
