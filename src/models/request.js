@@ -1,8 +1,8 @@
 import mongoose from '../../config/mongoose';
 
-var Schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
-var requestSchema = new Schema({
+const requestSchema = new Schema({
   htmlBody: String,
   url: String,
   completed: {
