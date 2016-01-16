@@ -44,11 +44,18 @@ REGION=[AWS Region] e.g. 'us-west-2'
 ###### Adding a Job to The Queue:
 ```shell
   $ curl --data "url=https://www.example.com" http://localhost:8080/requests 
+  {"__v":0,"url":"http://www.myspace.com","_id":"569ad80225b59d7b5c81b003","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
 ```
-*Once you add the job to your queue an `_id` variable will be returned.*
+
+
 
 ######  Retrieving/Checking Status of a Job
 ```shell
 $ curl http://localhost:8080/_id
+# If Job completed - 
+{"__v":0,"url":"http://www.example.com","_id":"1234","createdAt":"2016-01-16T23:53:22.563Z","completed":true, "htmlBody":"<html>...</html>"}
+
+# Otherwise: 
+#{"__v":0,"url":"http://www.example.com","_id":"12345","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
 ```
 
