@@ -2,15 +2,17 @@ import Request from '../models/request'
 import AWS from '../../config/aws'
 const sqs = new AWS.SQS();
 
+// This function sends a job to the SQS queue
 let sendToSqs = (res, doc, url) => {
-  var params = {
+  const params = {
     MessageBody: JSON.stringify({
       id: doc._id,
       url: url
     }),
-    DelaySeconds: 0,
+    DelaySeconds: 0, // currently set to no delay in sending message
     QueueUrl: process.env.QUEUE_URL
   };
+  // Sends message to sqs and returns appropriate http response
   sqs.sendMessage(params, (err, data) => {
     if (err) {
       return res.status(500).send(err.message);
@@ -21,7 +23,7 @@ let sendToSqs = (res, doc, url) => {
 }
 
 export default (app) => {
-
+  // Default route
   app.get('/', (req, res) => {
     res.send('<a href=\' https://github.com/sharmilajesupaul/aws-queue \'>View Readme</a>');
   });
