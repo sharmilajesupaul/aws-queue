@@ -51,7 +51,7 @@ REGION=[AWS Region] e.g. 'us-west-2'
 
 ######  Retrieving/Checking Status of a Job
 ```shell
-$ curl http://localhost:8080/_id
+$ curl http://localhost:8080/requests/:id
 # If Job completed - 
 {"__v":0,"url":"http://www.example.com","_id":"1234","createdAt":"2016-01-16T23:53:22.563Z","completed":true, "htmlBody":"<html>...</html>"}
 
