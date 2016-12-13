@@ -43,8 +43,8 @@ REGION=[AWS Region] e.g. 'us-west-2'
 
 ###### Adding a Job to The Queue:
 ```shell
-  $ curl --data "url=https://www.example.com" http://localhost:8080/requests 
-  {"__v":0,"url":"http://www.myspace.com","_id":"569ad80225b59d7b5c81b003","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
+$ curl --data "url=https://www.example.com" http://localhost:8080/requests 
+{"__v":0,"url":"http://www.myspace.com","_id":"569ad80225b59d7b5c81b003","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
 ```
 
 
@@ -56,6 +56,6 @@ $ curl http://localhost:8080/requests/:id
 {"__v":0,"url":"http://www.example.com","_id":"1234","createdAt":"2016-01-16T23:53:22.563Z","completed":true, "htmlBody":"<html>...</html>"}
 
 # Otherwise: 
-#{"__v":0,"url":"http://www.example.com","_id":"12345","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
+{"__v":0,"url":"http://www.example.com","_id":"12345","createdAt":"2016-01-16T23:53:22.563Z","completed":false}
 ```
 
